@@ -15,6 +15,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    environment: ${{ github.ref_name }}
     defaults:
       run:
         # terraform実行ディレクトリ
