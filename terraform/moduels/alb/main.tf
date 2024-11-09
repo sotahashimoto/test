@@ -1,7 +1,7 @@
 resource "aws_lb" "this" {
   name = "test-alb"
 
-  security_groups = ["sg-05259a8ebb16c8eea"] #手動で作成したSG
+  security_groups = ["sg-0b0966a99d7eb773c"] #default
 
   subnets = [
     "subnet-02edb3d7e8c7d09ab", #default
