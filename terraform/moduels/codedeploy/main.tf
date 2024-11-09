@@ -30,10 +30,10 @@ resource "aws_codedeploy_deployment_group" "group" {
     deployment_type   = "BLUE_GREEN"
   }
 
-  #ecs_service {
-  #  cluster_name = "hashimoto-jcb-test-cluster" #本番時は直書きしない
-  #  service_name = "hashimoto-jcb-test-ecs-service" #本番時は直書きしない
-  #}
+  ecs_service {
+    cluster_name = "test-cluster"
+    service_name = "test-ecs-service"
+  }
 
   load_balancer_info {
     target_group_pair_info {
