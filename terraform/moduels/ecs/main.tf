@@ -6,7 +6,7 @@ resource "aws_ecs_cluster" "this" {
     value = "disabled"
   }
 }
-/*
+
 resource "aws_ecs_task_definition" "ecs_task" {
   family                   = "test-ecs-task"
   requires_compatibilities = ["FARGATE"]
@@ -18,7 +18,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   container_definitions = jsonencode([
     {
       "name" : "web",
-      "image" : "024835775511.dkr.ecr.ap-northeast-1.amazonaws.com/hashimoto-jcb-test-ecr:latest", #手動でECRにpushしたimage
+      "image" : "696148199696.dkr.ecr.ap-northeast-1.amazonaws.com/test-ecr:latest", #手動でECRにpushしたimage
       "memory" : 3072,
       "essential" : true,
       "portMappings" : [
@@ -46,8 +46,8 @@ resource "aws_ecs_task_definition" "ecs_task" {
 
 # ECS Service
 resource "aws_ecs_service" "ecs_service" {
-  name                               = "hashimoto-jcb-test-ecs-service"
-  cluster                            = aws_ecs_cluster.ecs_cluster.id
+  name                               = "test-ecs-service"
+  cluster                            = aws_ecs_cluster.this.id
   task_definition                    = aws_ecs_task_definition.ecs_task.arn
   desired_count                      = 2
   launch_type                        = "FARGATE"
@@ -61,7 +61,7 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   load_balancer {
-    target_group_arn = "arn:aws:elasticloadbalancing:ap-northeast-1:024835775511:targetgroup/hashimoto-jcb-test-tg-1/e4c984ed1be249d9"
+    target_group_arn = "arn:aws:elasticloadbalancing:ap-northeast-1:696148199696:targetgroup/test-tg/9dbd19edd638ee22"
     container_name   = "web"
     container_port   = 80
   }
@@ -76,12 +76,12 @@ resource "aws_ecs_service" "ecs_service" {
 
   network_configuration {
     subnets = [
-      "subnet-bc4d00f5",
-      "subnet-0fe55c54"
+      "subnet-02edb3d7e8c7d09ab",
+      "subnet-0795e9b0fdb675510"
     ]
 
     security_groups = [
-      "sg-000e5d541e1d60213" #手動で作成したSG
+      "sg-0b0966a99d7eb773c" #default
     ]
 
     assign_public_ip = "true"
@@ -93,4 +93,3 @@ resource "aws_ecs_service" "ecs_service" {
 #  name              = "/fargate/service/${var.common["project"]}-${var.env}-ecs"
 #  retention_in_days = "365"
 #}
-*/
