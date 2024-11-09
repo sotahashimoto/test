@@ -4,8 +4,8 @@ resource "aws_lb" "this" {
   security_groups = ["sg-05259a8ebb16c8eea"] #手動で作成したSG
 
   subnets = [
-    "subnet-02edb3d7e8c7d09ab",
-    "subnet-0795e9b0fdb675510"
+    "subnet-02edb3d7e8c7d09ab", #default
+    "subnet-0795e9b0fdb675510" #default
   ]
 }
 
@@ -54,7 +54,7 @@ resource "aws_alb_listener" "listener_https" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2019-08"
-  certificate_arn   = "arn:aws:acm:ap-northeast-1:024835775511:certificate/ebf05f7b-3f2b-4167-b0ae-611457c1fc32"
+  certificate_arn   = "arn:aws:acm:ap-northeast-1:696148199696:certificate/d881ba9f-38de-4f2a-9957-01e1f1b07040" #手動作成
 
   default_action {
     target_group_arn = aws_alb_target_group.this.arn
