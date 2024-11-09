@@ -30,21 +30,21 @@ resource "aws_codedeploy_deployment_group" "group" {
     deployment_type   = "BLUE_GREEN"
   }
 
-  ecs_service {
-    cluster_name = "hashimoto-jcb-test-cluster" #本番時は直書きしない
-    service_name = "hashimoto-jcb-test-ecs-service" #本番時は直書きしない
-  }
+  #ecs_service {
+  #  cluster_name = "hashimoto-jcb-test-cluster" #本番時は直書きしない
+  #  service_name = "hashimoto-jcb-test-ecs-service" #本番時は直書きしない
+  #}
 
   load_balancer_info {
     target_group_pair_info {
       prod_traffic_route {
         listener_arns = [
-          "arn:aws:elasticloadbalancing:ap-northeast-1:024835775511:listener/app/hashimoto-jcb-test-alb/f02cc7874d62c187/d08b86377282cdac" #本番時は直書きしない
+          "arn:aws:elasticloadbalancing:ap-northeast-1:696148199696:listener/app/test-alb/a11fc41772fe5a52/52d8988602d1ee8f"
         ]
       }
 
       target_group {
-        name = "hashimoto-jcb-test-tg-1" #本番時は直書きしない
+        name = "test-tg"
       }
     }
   }

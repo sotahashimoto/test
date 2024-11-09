@@ -6,15 +6,15 @@ resource "aws_ecs_cluster" "this" {
     value = "disabled"
   }
 }
-/*
+
 resource "aws_ecs_task_definition" "ecs_task" {
-  family                   = "hashimoto-jcb-test-ecs-task"
+  family                   = "test-ecs-task"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "2048"
   memory                   = "4096"
-  task_role_arn            = "arn:aws:iam::024835775511:role/task_role" #河野さん作成roleを借り
-  execution_role_arn       = "arn:aws:iam::024835775511:role/task_role" #河野さん作成roleを借りている
+  task_role_arn            = "arn:aws:iam::696148199696:role/ecsTaskExecutionRole" #手動作成
+  execution_role_arn       = "arn:aws:iam::696148199696:role/ecsTaskExecutionRole" #手動作成
   container_definitions = jsonencode([
     {
       "name" : "web",
