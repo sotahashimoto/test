@@ -5,3 +5,7 @@ module "alb" {
 module "ecr" {
   source = "../../moduels/ecr"
 }
+
+module "ecs" {
+  source = "../../moduels/ecs"
+}
