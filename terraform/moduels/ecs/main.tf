@@ -6,7 +6,7 @@ resource "aws_ecs_cluster" "this" {
     value = "disabled"
   }
 }
-
+/*
 resource "aws_ecs_task_definition" "ecs_task" {
   family                   = "test-ecs-task"
   requires_compatibilities = ["FARGATE"]
